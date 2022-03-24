@@ -4,9 +4,7 @@ import anime from "animejs";
 
 const newTodo = ref("");
 const updatedTodo = ref("");
-const todos = ref([
-  { id: 1, title: "Learn MongoDB", isCompleted: false, isEdit: false },
-]);
+const todos = ref([]);
 
 const isEmpty = computed(() => {
   if (todos.value.length === 0) {
