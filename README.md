@@ -1,2 +1,3 @@
-# vue-todo-app-composition-api
- Vue Todo App
+# Vue Todo App
+
+A Simple Vue Todo App
