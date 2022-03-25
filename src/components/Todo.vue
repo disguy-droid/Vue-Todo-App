@@ -26,7 +26,7 @@ function addNewTodos() {
       id: todos.value.length + 1,
       title: newTodo.value,
       isCompleted: false,
-      isEdit: false,
+      isTrue: false,
     });
   }
   newTodo.value = "";
@@ -50,7 +50,7 @@ function removeTodos(id) {
 function editTodo(id) {
   const todoItems = todos.value.filter((todoEl) => {
     if (todoEl.id == id) {
-      todoEl.isEdit = !todoEl.isEdit;
+      todoEl.isTrue = !todoEl.isTrue;
     }
   });
 }
@@ -60,7 +60,7 @@ function updateTodo(id) {
   const tobeUpdatedTodos = todos.value.filter((tobeUpdateTodo) => {
     if (tobeUpdateTodo.id === id && updatedTodo.value.trim()) {
       tobeUpdateTodo.title = updatedTodo.value;
-      tobeUpdateTodo.isEdit = false;
+      tobeUpdateTodo.isTrue = false;
       updatedTodo.value = "";
     }
   });
@@ -71,7 +71,7 @@ function cancelEdit(id) {
   const tobeCancelTodos = todos.value.filter((tobeCancelTodo) => {
     if (tobeCancelTodo.id === id) {
       updatedTodo.value = "";
-      tobeCancelTodo.isEdit = false;
+      tobeCancelTodo.isTrue = false;
     }
   });
 }
@@ -134,7 +134,7 @@ onMounted(() => {
         v-if="isEmpty"
         class="select-none text-center mt-20 text-sm md:text-xl font-sourceCodePro font-bold text-dark/50"
       >
-        There is no todos currently.
+        There is no todos.
       </div>
 
       <div>
@@ -156,21 +156,22 @@ onMounted(() => {
                 @keyup.esc="cancelEdit(todo.id)"
                 tabindex="0"
                 @keyup.enter="updateTodo(todo.id)"
-                v-if="todo.isEdit"
+                v-if="todo.isTrue"
                 type="text"
                 name="updateTodo"
                 id="updateTodo"
                 class="w-10/12 md:w-full rounded-md px-4 py-2 font-sourceCodePro text-base appearance-none font-medium border-dark/20 text-dark"
                 v-model="updatedTodo"
+                :placeholder="todo.title"
               />
 
-              <p v-if="!todo.isEdit" class="font-medium text-dark text-lg">
+              <p v-if="!todo.isTrue" class="font-medium text-dark text-lg">
                 {{ todo.title }}
               </p>
               <div class="mt-12 flex justify-between items-center space-x-4">
                 <div>
                   <span v-if="!todo.isCompleted" class="text-sm text-dark/80"
-                    >Not Completed</span
+                    >Pending</span
                   >
                   <span v-if="todo.isCompleted" class="text-sm text-dark/80"
                     >Completed</span
@@ -179,7 +180,7 @@ onMounted(() => {
 
                 <!-- EDIT ICONS -->
                 <div
-                  v-if="todo.isEdit"
+                  v-if="todo.isTrue"
                   class="flex justify-between items-center space-x-4 select-none"
                 >
                   <!-- CHECK -->
@@ -225,7 +226,7 @@ onMounted(() => {
                 </div>
                 <!-- NORMAL ICONS -->
                 <div
-                  v-if="!todo.isEdit"
+                  v-if="!todo.isTrue"
                   class="flex justify-between items-center space-x-4 select-none"
                 >
                   <!-- EDIT -->

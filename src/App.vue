@@ -36,11 +36,11 @@ import Todo from "./components/Todo.vue";
 
 <style>
 #container {
-  background-image: url("./assets/polygon-scatter-haikei.svg");
+  background-image: url("./assets/polygon-scatter-outline.svg");
   background-repeat: no-repeat;
   min-height: 100vh;
   width: 100%;
-  background-position: center;
+  background-size: center;
   background-size: cover;
 }
 </style>
