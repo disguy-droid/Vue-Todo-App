@@ -14,7 +14,7 @@ const isEmpty = computed(() => {
   }
 });
 
-// SOLVE THIS PROBLEM 👀 `https://www.youtube.com/watch?v=GGeiCpV_6qg&t=1489s`
+
 function toggleComplete(id) {
   const todo = todos.value.find((todo) => todo.id === id);
   todo.isCompleted = !todo.isCompleted;
